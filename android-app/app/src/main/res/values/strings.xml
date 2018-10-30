@@ -19,8 +19,11 @@
     <string name="slide_2_title">Events</string>
     <string name="slide_2_desc">What type of events do you like to attend?</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Welcome</string>
+    <string name="slide_3_desc">To the Quick Trip App!</string>
+    <string name="slide_3_details">With this app you can find cool and exciting places in a city where you have never been based on your preferences. Just run through the quick
+    account and tastes setup and we can start recommending places for you to visit in the nearest major city. Weather you are looking for food, events, or historical sites you can
+    come here and based on weather, time of day, your personal availability we can get you to a cool and exciting place to enjoy and take in the local culture.</string>
 
     <string name="slide_4_title">World Travel</string>
     <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>

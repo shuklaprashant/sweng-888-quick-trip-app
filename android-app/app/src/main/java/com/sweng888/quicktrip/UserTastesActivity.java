@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.sweng888.quicktrip.adapters.UserTastesViewPagerAdapter;
 import com.sweng888.quicktrip.fragments.TasteItemFragment;
 import com.sweng888.quicktrip.model.Taste;
@@ -50,6 +49,8 @@ public class UserTastesActivity extends AppCompatActivity implements TasteItemFr
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = new int[]{
+                R.layout.activity_welcome,
+                R.layout.activity_create_account,
                 R.layout.activity_user_tastes_food,
                 R.layout.activity_user_tastes_events};
 
