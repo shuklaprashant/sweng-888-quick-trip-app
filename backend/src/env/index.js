@@ -23,10 +23,7 @@ async function _loadFromAWSSSM() {
   const ssm = new AWS.SSM({ apiVersion: constants.SSM.apiVersion });
   const parameters = await ssm
     .getParameters({
-      Names: [
-        constants.SSM.applicationParameters.db,
-        constants.SSM.applicationParameters.sfDestination
-      ]
+      Names: [constants.SSM.applicationParameters.db]
     })
     .promise();
 
