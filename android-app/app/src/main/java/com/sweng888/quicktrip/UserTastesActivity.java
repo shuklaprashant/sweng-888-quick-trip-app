@@ -18,9 +18,6 @@ import android.widget.Toast;
 import com.sweng888.quicktrip.fragments.TasteItemFragment;
 import com.sweng888.quicktrip.model.Taste;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserTastesActivity extends AppCompatActivity implements TasteItemFragment.OnListFragmentInteractionListener {
     private SharedPreferenceManager preferences;
     private ViewPager viewPager;

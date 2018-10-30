@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.sweng888.quicktrip.R;
 import com.sweng888.quicktrip.adapters.TasteItemRecyclerViewAdapter;
-import com.sweng888.quicktrip.fragments.dummy.DummyContent;
-import com.sweng888.quicktrip.fragments.dummy.DummyContent.DummyItem;
 import com.sweng888.quicktrip.model.Taste;
 
 import java.util.ArrayList;
