@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +14,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.sweng888.quicktrip.adapters.TasteListAdapter;
+import android.widget.Toast;
+import com.sweng888.quicktrip.fragments.TasteItemFragment;
 import com.sweng888.quicktrip.model.Taste;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserTastesActivity extends AppCompatActivity {
+public class UserTastesActivity extends AppCompatActivity implements TasteItemFragment.OnListFragmentInteractionListener {
     private SharedPreferenceManager preferences;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -55,7 +54,8 @@ public class UserTastesActivity extends AppCompatActivity {
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = new int[]{
-                R.layout.activity_user_tastes_food};
+                R.layout.activity_user_tastes_food,
+                R.layout.activity_user_tastes_events};
 
         // adding bottom dots
         addBottomDots(0);
@@ -162,18 +162,18 @@ public class UserTastesActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onListFragmentInteraction(Taste item) {
+        Toast.makeText(this, item.toString(), Toast.LENGTH_LONG).show();
+    }
+
     // View pager adapter
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
-        private List<Taste> taste; // Change to a [][] array to allocate positions with tastes
         private Context mContext;
 
         public MyViewPagerAdapter(Context context) {
             this.mContext = context;
-            taste = new ArrayList<>();
-            taste.add(new Taste(1, "Italian", "Yummy cheesy food.", false));
-            taste.add(new Taste(2, "American", "Big juicy and delicious", false));
-            taste.add(new Taste(3, "Indian", "Spicy and amazing", false));
         }
 
         @Override
@@ -181,11 +181,6 @@ public class UserTastesActivity extends AppCompatActivity {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(layouts[position], container, false);
 
-            RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.tasteRecyclerView);
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mContext));
-            TasteListAdapter mAdapter = new TasteListAdapter(this.mContext, taste);
-            mRecyclerView.setAdapter(mAdapter);
             container.addView(view);
             return view;
         }
