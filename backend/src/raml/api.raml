@@ -1,0 +1,36 @@
+#%RAML 1.0
+---
+title: Quick Trip App API's
+description: | 
+  API's for the Quick Trip App SWENG-888
+baseUri: /api/{version}
+version: v1.0
+types:
+
+/users:
+  get:
+    description: |
+      Query users from the service
+    responses:
+      200:
+        description: Collection of Users
+        body:
+          application/json:
+            example: [
+                {
+                    "id": 1,
+                    "name": "Demo User 1"
+                }
+            ]
+  post:
+    description: |
+      Create user into the Extension service
+    body:
+      application/json:
+        example: {
+          "id": 1,
+          "name": "Demo User 1"
+        }
+    responses:
+      201:
+        description: User accepted

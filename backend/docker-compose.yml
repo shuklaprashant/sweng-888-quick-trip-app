@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6.6-alpine
+    environment:
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_USER: myapp
+      POSTGRES_DB: poc
+    restart: on-failure
+    ports:
+      - 5432:5432
