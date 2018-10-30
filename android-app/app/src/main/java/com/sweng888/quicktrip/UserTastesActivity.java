@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.sweng888.quicktrip.adapters.TasteListAdapter;
+import com.sweng888.quicktrip.model.Taste;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserTastesActivity extends AppCompatActivity {
     private SharedPreferenceManager preferences;
@@ -35,11 +42,6 @@ public class UserTastesActivity extends AppCompatActivity {
             finish();
         }
 
-        // Making notification bar transparent
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
         // making notification bar transparent
         hideStatusAndTitleBar();
         setContentView(R.layout.activity_user_tastes);
@@ -53,13 +55,12 @@ public class UserTastesActivity extends AppCompatActivity {
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = new int[]{
-                R.layout.activity_user_tastes_food,
-                R.layout.activity_user_tastes_events};
+                R.layout.activity_user_tastes_food};
 
         // adding bottom dots
         addBottomDots(0);
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
+        myViewPagerAdapter = new MyViewPagerAdapter(this);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
@@ -145,9 +146,7 @@ public class UserTastesActivity extends AppCompatActivity {
         }
     };
 
-    /**
-     * Making notification bar transparent
-     */
+    // Making notification bar transparent
     private void hideStatusAndTitleBar() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.DONUT) {
             View decorView = getWindow().getDecorView();
@@ -163,19 +162,30 @@ public class UserTastesActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * View pager adapter
-     */
+    // View pager adapter
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
+        private List<Taste> taste; // Change to a [][] array to allocate positions with tastes
+        private Context mContext;
 
-        public MyViewPagerAdapter() {
+        public MyViewPagerAdapter(Context context) {
+            this.mContext = context;
+            taste = new ArrayList<>();
+            taste.add(new Taste(1, "Italian", "Yummy cheesy food.", false));
+            taste.add(new Taste(2, "American", "Big juicy and delicious", false));
+            taste.add(new Taste(3, "Indian", "Spicy and amazing", false));
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(layouts[position], container, false);
+
+            RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.tasteRecyclerView);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this.mContext));
+            TasteListAdapter mAdapter = new TasteListAdapter(this.mContext, taste);
+            mRecyclerView.setAdapter(mAdapter);
             container.addView(view);
             return view;
         }
