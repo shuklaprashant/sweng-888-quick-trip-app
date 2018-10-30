@@ -1,6 +1,7 @@
 package com.sweng888.quicktrip.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
  * TODO: Replace the implementation with code for your data type.
  */
 public class TasteItemRecyclerViewAdapter extends RecyclerView.Adapter<TasteItemRecyclerViewAdapter.ViewHolder> {
-
+    private static final String TAG = "TasteItemRVAdapter";
     private final List<Taste> mValues;
     private final OnListFragmentInteractionListener mListener;
 
@@ -45,7 +46,7 @@ public class TasteItemRecyclerViewAdapter extends RecyclerView.Adapter<TasteItem
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private View mView;
         private TextView mTastename, mTasteDescription;
         private CheckBox mTasteSelected;
@@ -63,11 +64,18 @@ public class TasteItemRecyclerViewAdapter extends RecyclerView.Adapter<TasteItem
             this.mTastename.setText(item.getName());
             this.mTasteSelected.setChecked(item.isSelected());
 
-            this.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
+            this.mView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (getAdapterPosition() == RecyclerView.NO_POSITION) return;
+            int selectedPosition = getAdapterPosition();
+            Taste t =  mValues.get(selectedPosition);
+            t.changeSelection();
+            Log.d(TasteItemRecyclerViewAdapter.TAG, "Changed List Item Selection for " +t.getName()+" to "+t.isSelected());
+            this.mTasteSelected.setChecked(t.isSelected());
+            mListener.onListFragmentInteraction(t);
         }
     }
 }

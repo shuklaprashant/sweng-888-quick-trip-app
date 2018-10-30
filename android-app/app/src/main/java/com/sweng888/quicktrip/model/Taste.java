@@ -29,7 +29,7 @@ public class Taste {
         return selected;
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
+    public void changeSelection() {
+        this.selected = this.selected == true ? false : true;
     }
 }

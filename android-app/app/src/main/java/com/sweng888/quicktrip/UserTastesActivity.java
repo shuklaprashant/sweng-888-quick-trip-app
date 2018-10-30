@@ -1,27 +1,26 @@
 package com.sweng888.quicktrip;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.sweng888.quicktrip.adapters.UserTastesViewPagerAdapter;
 import com.sweng888.quicktrip.fragments.TasteItemFragment;
 import com.sweng888.quicktrip.model.Taste;
 
 public class UserTastesActivity extends AppCompatActivity implements TasteItemFragment.OnListFragmentInteractionListener {
+    private static final String TAG = "UserTastesActivity";
     private SharedPreferenceManager preferences;
     private ViewPager viewPager;
-    private MyViewPagerAdapter myViewPagerAdapter;
+    private UserTastesViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
     private int[] layouts;
@@ -57,7 +56,7 @@ public class UserTastesActivity extends AppCompatActivity implements TasteItemFr
         // adding bottom dots
         addBottomDots(0);
 
-        myViewPagerAdapter = new MyViewPagerAdapter(this);
+        myViewPagerAdapter = new UserTastesViewPagerAdapter(this, layouts);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
@@ -161,42 +160,6 @@ public class UserTastesActivity extends AppCompatActivity implements TasteItemFr
 
     @Override
     public void onListFragmentInteraction(Taste item) {
-        Toast.makeText(this, item.toString(), Toast.LENGTH_LONG).show();
-    }
-
-    // View pager adapter
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private LayoutInflater layoutInflater;
-        private Context mContext;
-
-        public MyViewPagerAdapter(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(layouts[position], container, false);
-
-            container.addView(view);
-            return view;
-        }
-
-        @Override
-        public int getCount() {
-            return layouts.length;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == obj;
-        }
-
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            View view = (View) object;
-            container.removeView(view);
-        }
+        Log.d(UserTastesActivity.TAG, "Received ListFragmentInteractionUpdate for item " + item.getName());
     }
 }

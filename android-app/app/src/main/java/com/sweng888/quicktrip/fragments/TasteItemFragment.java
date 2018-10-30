@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import com.sweng888.quicktrip.R;
 import com.sweng888.quicktrip.adapters.TasteItemRecyclerViewAdapter;
 import com.sweng888.quicktrip.model.Taste;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 public class TasteItemFragment extends Fragment {
 
+    private List<Taste> taste;
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -61,7 +63,7 @@ public class TasteItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tasteitem_list, container, false);
 
-        List<Taste> taste = new ArrayList<>();
+        taste = new ArrayList<>();
         taste.add(new Taste(1, "Italian", "Yummy cheesy food.", false));
         taste.add(new Taste(2, "American", "Big juicy and delicious", false));
         taste.add(new Taste(3, "Indian", "Spicy and amazing", false));

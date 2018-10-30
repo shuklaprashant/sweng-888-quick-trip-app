@@ -54,7 +54,7 @@
                     android:id="@+id/tasteSelected"
                     android:layout_marginTop="8dp"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:textAlignment="viewStart"/>
+                    android:textAlignment="viewStart" android:clickable="false"/>
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
