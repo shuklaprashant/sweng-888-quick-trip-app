@@ -13,7 +13,14 @@ module.exports = {
     readAll: sql('users/read-all.sql'),
     init: sql('users/init.sql'),
     add: sql('users/add.sql')
+  },
+  products: {
+    create: sql('products/create.sql'),
+    readAll: sql('products/read-all.sql'),
+    init: sql('products/init.sql'),
+    add: sql('products/add.sql')
   }
+
 };
 
 function sql(file) {

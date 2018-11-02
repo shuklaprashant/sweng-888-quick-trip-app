@@ -1,1 +1,0 @@
-# sweng-888-quick-trip-app

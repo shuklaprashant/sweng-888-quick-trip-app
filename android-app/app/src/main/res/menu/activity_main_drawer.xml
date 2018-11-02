@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Account" />
+
+        <item
+            android:id="@+id/nav_preferences"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Preferences" />
+
+
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Suggest Location - On spot recommendation view on map with pin and location details first view of products user selects what they want to do we recommend" />
+
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Activity History - Shows the places you visited or are currently visiting based on selections of user from other areas. Organized by city where use to leave reviews
+maybe we can do some location geofencing. When user arrives to the location we give an alert so they can review the place and a reminder to leave reviews and if they liked or disliked the location" />
+
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Checkout other locations" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
