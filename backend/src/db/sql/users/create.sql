@@ -1,13 +1,13 @@
 CREATE SCHEMA IF NOT EXISTS ${schema~};
 CREATE TABLE IF NOT EXISTS ${schema~}.users
 (
-    id serial PRIMARY KEY,
+    id text PRIMARY KEY,
     name text NOT NULL,
-    email text NOT NULL,
     password text NOT NULL,
-    birthday date NOT NULL,
+    birthday text NOT NULL,
     profileImage uuid
-)
+);
+
 
 CREATE TABLE IF NOT EXISTS ${schema~}.preferences
 (
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS ${schema~}.preferences
     category text,
     characteristic text,
     preferred boolean
-)
+);
 
 -- Write a job that will put entries in here when:
 -- The user is created
@@ -24,18 +24,18 @@ CREATE TABLE IF NOT EXISTS ${schema~}.preferences
 CREATE TABLE IF NOT EXISTS ${schema~}.recommendation
 (
     id uuid PRIMARY KEY,
-    user uuid NOT NULL,
+    userId text NOT NULL,
     product uuid NOT NULL
-)
+);
 
 -- If the user decides they want to visit this location
 -- the app should update this information here
 CREATE TABLE IF NOT EXISTS ${schema~}.activity
 (
     id uuid PRIMARY KEY,
-    user uuid NOT NULL,
+    userId text NOT NULL,
     product uuid NOT NULL,
     planned timestamp with time zone default now(),
     visited timestamp with time zone default now(),
     review uuid
-)
+);

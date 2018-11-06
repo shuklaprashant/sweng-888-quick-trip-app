@@ -1,0 +1,19 @@
+{
+  "title": "create-user-schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "password": {
+      "type": "string"
+    },
+    "birthday": {
+      "type": "string"
+    }
+  }
+}

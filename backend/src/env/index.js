@@ -14,7 +14,11 @@ async function _getEnv() {
     case 'AWS':
       env = await _loadFromAWSSSM();
     default:
-      env = await _loadFromAWSSSM();
+      env = {
+        postgresql: {
+          uri: 'postgres://postgres:postgres@localhost:5432/quicktrip'
+        }
+      };
   }
   return env;
 }

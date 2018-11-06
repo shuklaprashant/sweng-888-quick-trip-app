@@ -1,0 +1,1 @@
+SELECT * FROM ${schema~}.category_view WHERE id = $1 RETURNING *;

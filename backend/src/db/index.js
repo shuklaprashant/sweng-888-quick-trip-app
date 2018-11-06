@@ -21,7 +21,9 @@ async function _init() {
         // Do not use 'require()' here, because this event occurs for every task
         // and transaction being executed, which should be as fast as possible.
         obj.repositories = {
-          users: new repos.Users(obj, pgp)
+          users: new repos.Users(obj, pgp),
+          products: new repos.Products(obj, pgp),
+          category: new repos.Category(obj, pgp)
         };
       }
     };
@@ -32,8 +34,14 @@ async function _init() {
 
     // Create the database instance:
     db = pgp(envDef.postgresql.uri);
-    await db.repositories.users.create();
-    await db.repositories.users.initWithSampleData();
+    await Promise.all([
+      db.repositories.users.create(),
+      db.repositories.products.create(),
+      db.repositories.category.create()
+    ]);
+
+     await Promise.all([db.repositories.category.initWithSampleData()]);
+    // await db.repositories.users.initWithSampleData();
   }
 
   return db;

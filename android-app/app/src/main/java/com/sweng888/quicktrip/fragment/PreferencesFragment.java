@@ -102,8 +102,6 @@ public class PreferencesFragment extends Fragment {
         adapter.addFrag(PreferenceItemFragment.newInstance(1), "Food");
         adapter.addFrag(PreferenceItemFragment.newInstance(1), "Events");
         adapter.addFrag(PreferenceItemFragment.newInstance(1), "Activities");
-        adapter.addFrag(PreferenceItemFragment.newInstance(1), "Page 4");
-        adapter.addFrag(PreferenceItemFragment.newInstance(1), "Page 5");
         pager.setAdapter(adapter);
     }
 

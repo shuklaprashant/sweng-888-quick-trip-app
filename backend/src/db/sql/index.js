@@ -12,15 +12,20 @@ module.exports = {
     create: sql('users/create.sql'),
     readAll: sql('users/read-all.sql'),
     init: sql('users/init.sql'),
-    add: sql('users/add.sql')
+    add: sql('users/add.sql'),
+    findOne: sql('users/find-one.sql')
+  },
+  categories: {
+    init: sql('category/init.sql'),
+    create: sql('category/create.sql'),
+    readAll: sql('category/read-all.sql'),
+    add: sql('category/add.sql')
   },
   products: {
-    create: sql('products/create.sql'),
-    readAll: sql('products/read-all.sql'),
-    init: sql('products/init.sql'),
-    add: sql('products/add.sql')
+    create: sql('product/create.sql'),
+    init: sql('product/init.sql'),
+    add: sql('product/add.sql')
   }
-
 };
 
 function sql(file) {

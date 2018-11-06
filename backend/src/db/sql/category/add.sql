@@ -1,0 +1,1 @@
+INSERT INTO ${schema~}.users(name, img) VALUES($1, $2) RETURNING *
