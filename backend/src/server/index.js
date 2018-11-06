@@ -35,6 +35,7 @@ function _start() {
   );
 
   routers.users(app, passport, db);
+  routers.categories(app, passport, db);
 
   // Lets get started
   return envLoader
