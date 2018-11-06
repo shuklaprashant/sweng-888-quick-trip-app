@@ -30,7 +30,7 @@ function _start() {
           }
           return done(null, user);
         })
-        .catch(err => done(err));
+        .catch(err => done(null, false));
     })
   );
 
